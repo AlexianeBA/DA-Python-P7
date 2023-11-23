@@ -1,4 +1,5 @@
 from brutforce import read_file, find_best_investment, display_result
+import time
 
 
 def main():
@@ -11,6 +12,7 @@ def main():
     else:
         file_path = "index"
 
+    start_time = time.time()
     # Lire les données à partir du fichier
     actions = read_file("datasets/" + file_path + ".csv")
 
@@ -18,9 +20,11 @@ def main():
 
     # Trouver la meilleure combinaison d'actions
     best_investment, best_return = find_best_investment(actions, max_budget_per_client)
-
+    end_time = time.time()
     # Afficher les résultats
     display_result(best_investment, best_return)
+    total_execution_time = round(end_time - start_time, 2)
+    print(f"Temps total d'exécution: {total_execution_time} secondes")
 
 
 if __name__ == "__main__":

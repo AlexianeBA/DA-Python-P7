@@ -3,6 +3,7 @@ from optimized import (
     find_best_investment_optimized,
     display_result_optimized,
 )
+import time
 
 
 def main_optimized():
@@ -14,7 +15,7 @@ def main_optimized():
         file_path = "dataset2"
     else:
         file_path = "index"
-
+    start_time = time.time()
     # Lire les données à partir du fichier
     actions = read_file_optimized("datasets/" + file_path + ".csv")
 
@@ -27,6 +28,10 @@ def main_optimized():
 
     # Afficher les résultats
     display_result_optimized(best_investment, best_return)
+    end_time = time.time()
+
+    total_execution_time = round(end_time - start_time, 2)
+    print(f"Temps total d'exécution: {total_execution_time} secondes")
 
 
 if __name__ == "__main__":
