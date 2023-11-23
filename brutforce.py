@@ -42,7 +42,7 @@ def find_best_investment(actions, max_budget):
 
 
 def display_result(best_investment, best_return):
-    print("Meilleur combinaison d'actions:")
+    print("Meilleure combinaison d'actions:")
     for action in best_investment:
         print(
             f"{action['action']}- Coût: {action['price']} euros - Bénéfices: {action['profit']}%"
