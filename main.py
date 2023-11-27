@@ -1,5 +1,7 @@
 from brutforce import read_file, find_best_investment, display_result
 import time
+import psutil
+import datetime
 
 
 def main():
@@ -25,6 +27,18 @@ def main():
     display_result(best_investment, best_return)
     total_execution_time = round(end_time - start_time, 2)
     print(f"Temps total d'exécution: {total_execution_time} secondes")
+
+    cpu_usage = psutil.cpu_percent(interval=1)
+    print(f"Utilisation du processeur: {cpu_usage}%")
+    memory_info = psutil.virtual_memory()
+
+    total_memory = memory_info.total
+    used_memory = memory_info.used
+    available_memory = memory_info.available
+
+    print(f"Mémoire totale: {total_memory} octets")
+    print(f"Mémoire utilisée: {used_memory} octets")
+    print(f"Mémoire disponible: {available_memory} octets")
 
 
 if __name__ == "__main__":

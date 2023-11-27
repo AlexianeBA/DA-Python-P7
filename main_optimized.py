@@ -4,6 +4,7 @@ from optimized import (
     display_result_optimized,
 )
 import time
+import psutil
 
 
 def main_optimized():
@@ -30,8 +31,20 @@ def main_optimized():
     display_result_optimized(best_investment, best_return)
     end_time = time.time()
 
-    total_execution_time = round(end_time - start_time, 2)
+    total_execution_time = end_time - start_time
     print(f"Temps total d'exécution: {total_execution_time} secondes")
+
+    cpu_usage = psutil.cpu_percent(interval=1)
+    print(f"Utilisation du processeur: {cpu_usage}%")
+    memory_info = psutil.virtual_memory()
+
+    total_memory = memory_info.total
+    used_memory = memory_info.used
+    available_memory = memory_info.available
+
+    print(f"Mémoire totale: {total_memory} octets")
+    print(f"Mémoire utilisée: {used_memory} octets")
+    print(f"Mémoire disponible: {available_memory} octets")
 
 
 if __name__ == "__main__":
