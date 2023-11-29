@@ -15,6 +15,7 @@ def read_file_optimized(file_path):
                         "action": action.strip(),
                         "price": float(price),
                         "profit": float(profit),
+                        "rendement": float((profit * price) / 100),
                     }
                 )
     return data
@@ -22,8 +23,7 @@ def read_file_optimized(file_path):
 
 def find_best_investment_optimized(actions, max_budget):
     # tri des actions par ordre décroissant en fonction du profit
-    filtered_actions = [action for action in actions if action["profit"] != 0]
-    sorted_actions = sorted(actions, key=lambda y: y["profit"], reverse=True)
+    sorted_actions = sorted(actions, key=lambda y: y["rendement"], reverse=True)
     # budget actuel
     current_budget = 0.0
     # liste des meilleurs actions
@@ -50,6 +50,6 @@ def display_result_optimized(best_investment, best_return):
     print("Meilleure combinaison d'actions: ")
     for action in best_investment:
         print(
-            f"{action['action']}- Coût: {action['price']} euros - Bénéfices: {action['profit']}%"
+            f"{action['action']}- Coût: {action['price']} euros - Bénéfices: {action['profit']}% - Rendement: {action['rendement']}€"
         )
     print(f"\nRendement total: {best_return}€")

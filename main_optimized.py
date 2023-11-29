@@ -1,6 +1,6 @@
-from optimized import (
+from optimized2 import (
     read_file_optimized,
-    find_best_investment_optimized,
+    find_best_investment_dynamic,
     display_result_optimized,
 )
 import time
@@ -23,7 +23,7 @@ def main_optimized():
     max_budget_per_client = 500
 
     # Trouver la meilleure combinaison d'actions
-    best_investment, best_return = find_best_investment_optimized(
+    best_investment, best_return = find_best_investment_dynamic(
         actions, max_budget_per_client
     )
 
