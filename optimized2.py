@@ -31,6 +31,8 @@ def find_best_investment_dynamic(actions, max_budget):
     # dp[i][j] représente le meilleur rendement pour les i premières actions avec un budget j
     dp = [[0.0] * (max_budget + 1) for _ in range(num_actions + 1)]
 
+    # boucle principale qui itère sur chaque action et chaque budget possible.
+    # Pour chaque action, elle calcule le meilleur rendement possible en incluant ou excluant cette action, en fonction du budget.
     for i in range(1, num_actions + 1):
         for budget in range(max_budget + 1):
             # Ne pas inclure l'action i
@@ -41,6 +43,7 @@ def find_best_investment_dynamic(actions, max_budget):
                 sorted_actions[i - 1]["price"] <= budget
                 and sorted_actions[i - 1]["profit"] != 0
             ):
+                # résultats stockés dans une liste dp
                 dp[i][budget] = max(
                     dp[i][budget],
                     dp[i - 1][int(budget - sorted_actions[i - 1]["price"])]
@@ -52,9 +55,12 @@ def find_best_investment_dynamic(actions, max_budget):
     # Reconstruction de la liste des meilleures actions
     best_investment_dynamic = []
     i, budget = num_actions, max_budget
+    # tant que le budget n'est pas égale à 0 et prix > 0
     while i > 0 and budget > 0:
+        # alors on détermine les actions qui ont contribués au meilleur rendement
         if dp[i][int(budget)] != dp[i - 1][int(budget)]:
             best_investment_dynamic.append(sorted_actions[i - 1])
+            # budget - prix action
             budget -= sorted_actions[i - 1]["price"]
         i -= 1
 
