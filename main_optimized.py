@@ -23,12 +23,12 @@ def main_optimized():
     max_budget_per_client = 500
 
     # Trouver la meilleure combinaison d'actions
-    best_investment, best_return = find_best_investment_dynamic(
+    best_investment, best_return, total_investment = find_best_investment_dynamic(
         actions, max_budget_per_client
     )
 
     # Afficher les résultats
-    display_result_optimized(best_investment, best_return)
+    display_result_optimized(best_investment, best_return, total_investment)
     end_time = time.time()
 
     total_execution_time = end_time - start_time

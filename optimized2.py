@@ -55,25 +55,27 @@ def find_best_investment_dynamic(actions, max_budget):
     # Reconstruction de la liste des meilleures actions
     best_investment_dynamic = []
     i, budget = num_actions, max_budget
-    # tant que le budget n'est pas égale à 0 et prix > 0
     while i > 0 and budget > 0:
-        # alors on détermine les actions qui ont contribués au meilleur rendement
         if dp[i][int(budget)] != dp[i - 1][int(budget)]:
             best_investment_dynamic.append(sorted_actions[i - 1])
-            # budget - prix action
             budget -= sorted_actions[i - 1]["price"]
         i -= 1
 
     # Valeur du meilleur retour sur investissement arrondi à deux chiffres après la virgule
     best_return_dynamic = round(dp[num_actions][max_budget], 2)
 
-    return best_investment_dynamic, best_return_dynamic
+    # Calcul du montant total des actions
+    total_investment = sum(action["price"] for action in best_investment_dynamic)
+
+    return best_investment_dynamic, best_return_dynamic, total_investment
 
 
-def display_result_optimized(best_investment, best_return):
+def display_result_optimized(best_investment, best_return, total_investment):
     print("Meilleure combinaison d'actions: ")
     for action in best_investment:
         print(
             f"{action['action']}- Coût: {action['price']} euros - Bénéfices: {action['profit']}% - Rendement: {action['rendement']}€"
         )
+
+    print(f"Total investi: {total_investment}")
     print(f"\nRendement total: {best_return}€")
