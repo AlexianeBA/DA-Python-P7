@@ -27,7 +27,7 @@ def find_best_investment_dynamic(actions, max_budget):
     # longueur total du Nombre d'actions stockée dans une variable
     num_actions = len(sorted_actions)
 
-    # création d'un tableau pour stocker les résultats intermédiaires
+    # création d'une table pour stocker les résultats intermédiaires
     # dp[i][j] représente le meilleur rendement pour les i premières actions avec un budget j
     dp = [[0.0] * (max_budget + 1) for _ in range(num_actions + 1)]
 
